@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\User;
+
 return new class extends Migration
 {
 
@@ -13,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->datetimes('ends_at');
+            $table->dateTime('ends_at');
             $table->string('status')->default('open');
             $table->json('tech_stack');
-            $table->foreignIdFor(User::class, 'created_by');
+            $table->foreignIdFor(User::class, 'created_by')->constrained('users');
             $table->timestamps();
         });
     }
